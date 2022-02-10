@@ -17,6 +17,14 @@
  *      "posts" in post-type can be replaced by custom post types
  * 
 */
+
+
+function posts_list_styles() {
+    wp_enqueue_style( 'w3', plugin_dir_url( __FILE__ ) . '/css/w3.css', false, '' , 'all' );
+    wp_enqueue_style( 'posts-list', plugin_dir_url( __FILE__ ).'/css/posts-list.css', false, '' , 'all' );
+    };
+add_action( 'wp_enqueue_scripts', 'posts_list_styles' );
+
 function posts_list_shortcode($atts)
     {
         ob_start();
@@ -41,9 +49,9 @@ function posts_list_shortcode($atts)
             
                 <div class="w3-col l4 m6 s12">
                 <a href=<?php echo get_permalink($post->ID); ?>>
-                <span class="post-image">
+                <div class="posts-list-image">
                     <?php echo get_the_post_thumbnail($post->ID); ?>
-                </span>
+            </div>
                 <h4><?php echo esc_html( get_the_title($post->ID) ); ?></h4>
             </a>
             </div> 
